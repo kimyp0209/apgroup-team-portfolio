@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>아모레퍼시픽 - A More Beautiful World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    html, body {
+      overflow-x: hidden;
+    }
+
+    body {
+      color: white;
+    }
+
+    header {
+      position: fixed;
+      top: 0px;
+      left: 0;
+      width: 100%;
+      height: 10;
+      z-index: 100;
+      background: transparent;
+      transition: background-color 0.3s ease;
+    }
+    header:hover {
+  background-color: #000;
+}
+    .header-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 12px 40px 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px; 
+    }
+
+    .top-header {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .lang-box,
+    .right-box {
+      position: absolute;
+      top: 0;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .lang-box a,
+    .right-box a {
+      color: white;
+      font-weight: 400;
+    }
+
+    .lang-box {
+      left: 0;
+      gap: 8px;
+    }
+
+    .right-box {
+      right: 0;
+      gap: 20px;
+    }
+
+    .links-box {
+      display: flex;
+      gap: 10px;
+    }
+
+    .link-icon {
+      margin-left: 4px;
+      height: 14px;
+      vertical-align: middle;
+    }
+
+    .search-box .search-icon {
+      height: 14px;
+    }
+
+    .main-nav {
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .main-nav li a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    /* ─── 드롭다운용 추가 CSS ─────────────────── */
+    .main-nav li.nav-item { 
+      position: relative; 
+    }
+    .dropdown-wrapper {
+      position: fixed;
+      /* header top(30px) + header-container padding-top(12px) + top-header 높이(40px) + nav margin-top(12px) */
+      top: 115px; 
+      left: 0;
+      width: 100vw;
+      display: none;
+      background: #fff;
+      z-index: 50;
+    }
+    .dropdown-wrapper,
+.dropdown-wrapper * {
+  color: #000;
+}
+    .main-nav li.nav-item:hover .dropdown-wrapper {
+      display: block;
+    }
+    /* dropdown-inner 만 flex 로 칸 나누기 */
+    .dropdown-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .dropdown-col {
+      flex: 1;
+    }
+    .dropdown-col-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .dropdown-link {
+      display: block;
+      margin-bottom: 6px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .dropdown-link:hover {
+      color: #000;
+    }
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+        .slider { height:100vh; position:relative; }
+    .slide { position:absolute; top:0; left:0; height:100%; width:100%; opacity:0; transition:opacity 1s; }
+    .slide.active { opacity:1; }
+    .slide video { width:100%; height:100%; object-fit:cover; }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 47%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 3;
+    }
+
+    .hero-content p {
+      font-size: 16px;
+      margin: 6px 0;
+    }
+
+    .hero-content h1 {
+      font-size: 52px;
+      font-weight: 500;
+      margin: 10px 0;
+    }
+
+    .hero-content button {
+      margin-top: 20px;
+      padding: 8px 20px;
+      font-size: 14px;
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 400;
+    }
+
+    /* ✅ progress bar: video 위 겹치게 */
+ /* progress-bar-wrapper 수정 (하단 네비바 바로 위에 위치) */
+    .progress-bar-wrapper {
+      position:absolute;
+      bottom:90px;
+      left:0;
+      width:100%;
+      height:8px;
+      background-color:#ffffff;
+      z-index:10;
+    }
+
+/* 진행 바 (파란색) */
+.progress-bar {
+      height:100%;
+      width:0%;
+      background-color:#003478;
+      transition:width linear;
+    }
+
+
+    /* ✅ 하단 네비 영역 */
+    .bottom-background {
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:90px;
+      background-color:white;
+      z-index:5;
+    }
+
+    .bottom-bar {
+      width: 160px;
+      height: 3px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="top-header">
+        <div class="lang-box">
+          <a href="#">KR</a>
+          <a href="#">EN</a>
+          <a href="#">CN</a>
+        </div>
+        <div class="logo-box">
+          <a href="/"><img src="img/amorepacific.png" alt="AMOREPACIFIC"></a>
+        </div>
+        <div class="right-box">
+          <div class="links-box">
+            <a href="#">
+              <span>아모레스토리</span>
+              <img src="img/res.png" alt="icon" class="link-icon">
+            </a>
+            <a href="#">
+              <span>아모레몰</span>
+              <img src="img/res.png" alt="icon" class="link-icon">
+            </a>
+          </div>
+          <div class="search-box">
+            <a href="#"><img src="img/res.png" alt="search" class="search-icon"></a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <!-- ABOUT US 드롭다운 적용 -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">ABOUT US</a>
+            <div class="dropdown-wrapper">
+              <div class="dropdown-inner">
+                <div class="dropdown-col">
+                  <div class="dropdown-col-title">Amorepacific</div>
+                  <a href="#" class="dropdown-link">Our Story</a>
+                  <a href="#" class="dropdown-link">Our History</a>
+                  <a href="#" class="dropdown-link">Our Values</a>
+                </div>
+                <div class="dropdown-col">
+                  <div class="dropdown-col-title">Research &amp; Innovation</div>
+                  <a href="#" class="dropdown-link">연구개발</a>
+                  <a href="#" class="dropdown-link">SCM</a>
+                </div>
+                <div class="dropdown-col">
+                  <div class="dropdown-col-title">Visual Identity</div>
+                  <a href="#" class="dropdown-link">CI</a>
+                  <a href="#" class="dropdown-link">아리따 글꼴</a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 나머지 메뉴 -->
+          <li><a href="#">BRANDS</a></li>
+          <li><a href="#">OUR CULTURE</a></li>
+          <li><a href="#">COMMITMENTS</a></li>
+          <li><a href="#">INVESTORS</a></li>
+          <li><a href="#">CAREERS</a></li>
+          <li><a href="#">NEWS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="slider">
+      <!-- ✅ 겹치는 progress bar -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar" id="progressFill"></div>
+      </div>
+
+      <div class="slide active">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="img/1.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-content">
+          <p>WE MAKE A MORE BEAUTIFUL WORLD</p>
+          <h1>New Beauty</h1>
+          <button>자세히 보기</button>
+        </div>
+      </div>
+      <div class="slide">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="img/2.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-content">
+          <p>WE MAKE A MORE BEAUTIFUL WORLD</p>
+          <h1>Sustainability</h1>
+          <button>자세히 보기</button>
+        </div>
+      </div>
+      <div class="slide">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="img/3.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-content">
+          <p>WE MAKE A MORE BEAUTIFUL WORLD</p>
+          <h1>Innovation</h1>
+          <button>자세히 보기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ 하단 구조용 배경 -->
+    <div class="bottom-background">
+      <div class="bottom-bar"></div>
+    </div>
+  </section>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const progressFill = document.getElementById('progressFill');
+    const slider = document.querySelector('.slider');
+  
+    let currentIndex = 0;
+    const fullDuration = 12000;    // 전체 애니메이션 시간
+    let remainingTime = fullDuration;  
+    let progressStart = null;      
+    let progressTimer = null;
+  
+    // 슬라이드 보여주기
+    function showSlide(index) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      currentIndex = index;
+    }
+  
+    // 진행바 시작 (time 만큼 0→100% 애니메이션)
+    function startProgress(time) {
+      // 리셋
+      progressFill.style.transition = 'none';
+      progressFill.style.width = '0%';
+      void progressFill.offsetWidth;  // 강제 리플로우
+  
+      // 애니메이션 재설정
+      progressFill.style.transition = `width ${time}ms linear`;
+      progressFill.style.width = '100%';
+  
+      // 타이머 예약
+      progressStart = Date.now();
+      remainingTime = time;
+      progressTimer = setTimeout(() => {
+        nextSlide();
+      }, time);
+    }
+  
+    // 다음 슬라이드
+    function nextSlide() {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      showSlide(nextIndex);
+      startProgress(fullDuration);
+    }
+  
+    // 호버 시 일시정지
+    function pauseProgress() {
+      clearTimeout(progressTimer);
+      const elapsed = Date.now() - progressStart;
+      // 현재 퍼센트 계산
+      const percent = (elapsed / remainingTime) * 100;
+      // 정확히 멈춤
+      progressFill.style.transition = 'none';
+      progressFill.style.width = Math.min(percent, 100) + '%';
+      // 남은 시간 업데이트
+      remainingTime = remainingTime - elapsed;
+    }
+  
+    // 호버 해제 시 재개
+    function resumeProgress() {
+      // 남은 시간만큼 100%까지 애니메이션
+      progressFill.style.transition = `width ${remainingTime}ms linear`;
+      progressFill.style.width = '100%';
+      progressStart = Date.now();
+      progressTimer = setTimeout(() => {
+        nextSlide();
+      }, remainingTime);
+    }
+  
+    // 이벤트 바인딩
+    slider.addEventListener('mouseenter', pauseProgress);
+    slider.addEventListener('mouseleave', resumeProgress);
+  
+    // 초기 실행
+    showSlide(currentIndex);
+    startProgress(fullDuration);
+  </script>
+  
+  
+</body>
+</html>
