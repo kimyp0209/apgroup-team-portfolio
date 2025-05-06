@@ -1,0 +1,29 @@
+* {margin:0; padding:0;}
+ul li {list-style:none;}
+.clearfix:after{content:'';display:block; clear:both;}
+body {background:green; overflow-y:scroll; padding-top: 50px;}
+.clearfix {		
+	background:linear-gradient( #fff 50px, rgba(255,255,255,.5) 50px);
+	height:50px; 
+	overflow:hidden;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	transition:height 0.5s;
+    background-color: black;
+}
+
+nav {width:960px; margin:0 auto;}
+nav > ul {display:flex; gap:70px;}
+nav > ul > li {position: relative; line-height: 50px;}
+nav > ul > li ul{ width:100%; position: absolute;}
+nav > ul > li ul li{white-space:nowrap;}
+.logo {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: 50px;
+    z-index: 10;
+    background-color: black;
+  }
