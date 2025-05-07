@@ -1,0 +1,165 @@
+/* ✅ Reset 기본 설정 */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  /* ✅ Hero section & video */
+  #hero {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+  }
+  
+  #hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  /* ✅ 고정 헤더 */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  footer {
+    position: static;
+    z-index: auto;
+  }
+  
+  /* ✅ Header 내부 구조 */
+  .header-container {
+    width: 100vw;
+    height: 180px;
+  }
+  
+  .top-header {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60%;
+    position: relative;
+  }
+  
+  .logo-box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  
+  .logo-box img {
+    height: 25px;
+    width: 250px;
+  }
+  
+  .lang-box a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  
+  .right-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 2;
+  }
+  
+  .links-box {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .links-box a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    gap: 4px;
+  }
+  
+  .link-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .search-box a {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .main-nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: -10px auto; /* 네비게이션 간격 줄이기 */
+  }
+  
+  .main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: aliceblue;
+  }
+  
+  .main-nav li a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  /* ✅ Hero 텍스트 */
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 5;
+  }
+  
+  .hero-content h1 {
+    font-size: 52px;
+    margin: 12px 0;
+  }
+  
+  .hero-content p {
+    font-size: 16px;
+    margin: 4px 0;
+    line-height: 1.6;
+  }
+  
+  .hero-content button {
+    margin-top: 20px;
+    padding: 8px 20px;
+    font-size: 14px;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+  }
